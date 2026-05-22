@@ -14,16 +14,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        /* Logo Styles */
+        .logo-container{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;line-height:1;flex-shrink:0}
+        .logo-blocks{display:flex;gap:2px}
+        .logo-letter{width:28px;height:38px;background:#dc2626;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.2rem;border-radius:3px}
+        .logo-subtext{font-size:11px;font-weight:700;color:#1a1a1a;margin-top:2px;letter-spacing:1.5px}
+        .logo-subtext-white{font-size:9px;font-weight:700;color:#fff;margin-top:1px;letter-spacing:1.5px}
+        @media(min-width:768px){.logo-letter{width:34px;height:46px;font-size:1.4rem}.logo-subtext,.logo-subtext-white{font-size:14px}}
+
+        /* Footer Logo */
+        .footer-logo{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
+        .footer-logo .logo-blocks{display:flex;gap:2px}
+        .footer-logo .logo-letter{width:22px;height:30px;background:#dc2626;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.95rem;border-radius:3px}
+        .footer-logo .logo-subtext{font-size:14px;font-weight:700;color:#fff;margin-top:3px;letter-spacing:1.5px}
+
+        /* Mobile Menu */
+        .mobile-menu{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:2px solid #dc2626;box-shadow:0 10px 30px rgba(0,0,0,0.1);flex-direction:column;padding:1rem;gap:0.5rem;z-index:50}
+        .mobile-menu.active{display:flex}
+        .mobile-menu a{padding:0.8rem 1rem;text-decoration:none;color:#1a1a1a;font-weight:600;font-size:1rem;border-radius:8px;transition:all 0.3s}
+        .mobile-menu a:hover{background:#fef2f2;color:#dc2626}
+
+        /* Product Cards */
         .product-card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
         @media(min-width:640px){.product-card-grid{grid-template-columns:repeat(3,1fr);gap:1.25rem}}
         @media(min-width:1024px){.product-card-grid{grid-template-columns:repeat(4,1fr);gap:1.5rem}}
-        .p-card{display:flex;flex-direction:column;align-items:center;gap:.75rem;padding:1.5rem 1rem;border-radius:16px;border:2px solid #e5e5e5;background:#fff;text-decoration:none;color:#1a1a1a;transition:all .3s cubic-bezier(.4,0,.2,1);cursor:pointer}
+        .p-card{display:flex;flex-direction:column;align-items:center;border-radius:16px;border:2px solid #e5e5e5;background:#fff;text-decoration:none;color:#1a1a1a;transition:all .3s cubic-bezier(.4,0,.2,1);cursor:pointer;overflow:hidden}
         .p-card:hover{border-color:#dc2626;box-shadow:0 10px 30px -10px rgba(220,38,38,.25);transform:translateY(-6px);background:#fef2f2}
-        .p-card .p-icon{display:flex;height:3rem;width:3rem;align-items:center;justify-content:center;border-radius:14px;background:rgba(220,38,38,.08);color:#dc2626;transition:all .3s ease;font-size:1.5rem}
-        .p-card:hover .p-icon{background:#dc2626;color:#fff;box-shadow:0 0 25px rgba(220,38,38,.4)}
-        .p-card .p-name{font-weight:700;font-size:1.3rem;text-align:center}
+        .p-card .p-img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#f5f5f5;display:block}
+        .p-card .p-content{padding:1.2rem 1rem;text-align:center;width:100%;display:flex;flex-direction:column;align-items:center;gap:8px}
+        .p-card .p-name{font-weight:700;font-size:1.2rem;text-align:center;color:#1a1a1a;line-height:1.3;margin:0}
         .p-card:hover .p-name{color:#dc2626}
-        .p-card .p-brands{font-size:.75rem;color:#999;font-weight:500}
+        .p-card .p-brands{font-size:0.7rem;color:#999;font-weight:500;text-align:center;line-height:1.4;margin:0}
+
+        /* Timer */
         .timer-section{background:linear-gradient(135deg,#fef2f2 0%,#fff 50%,#fef2f2 100%);padding:4rem 0;position:relative;overflow:hidden;border-radius:24px;margin-top:2rem}
         .timer-section::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 50%,rgba(220,38,38,.08) 0%,transparent 50%),radial-gradient(circle at 70% 50%,rgba(220,38,38,.05) 0%,transparent 50%)}
         .timer-container{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1;background:#fff;border-radius:24px;padding:3rem 2rem;box-shadow:0 20px 60px rgba(220,38,38,.15),0 0 0 2px rgba(220,38,38,.1);border:3px solid rgba(220,38,38,.2)}
@@ -50,11 +73,34 @@
 <body>
     <div class="flex min-h-screen flex-col">
 
+        <!-- Header -->
         <header class="sticky top-0 z-40 w-full border-b border-border bg-background/90 backdrop-blur-md">
-            <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
-                <a href="index.html" class="flex items-center gap-2 group"><div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-[var(--primary-glow)] text-primary-foreground shadow-[var(--shadow-glow)] transition-transform group-hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg></div><div class="leading-tight"><div class="font-bold text-lg text-foreground">Digital <span class="text-gradient">Computers</span></div><div class="text-[10px] uppercase tracking-widest text-muted-foreground">IT Solutions</div></div></a>
-                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-foreground"><a href="index.html" class="nav-link">Home</a><a href="products.html" class="nav-link active">Products</a><a href="about.html" class="nav-link">About</a><a href="contact.html" class="nav-link">Contact</a></nav>
-                <div class="hidden md:flex items-center gap-3"><a href="tel:+923009287057" class="btn-glow rounded-full px-5 py-2 text-sm font-semibold">Get Free Call</a></div>
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-3 py-3 md:px-6 md:py-4">
+                <a href="index.html" class="logo-container">
+                    <div class="logo-blocks">
+                        <span class="logo-letter">D</span><span class="logo-letter">I</span><span class="logo-letter">G</span><span class="logo-letter">I</span><span class="logo-letter">T</span><span class="logo-letter">A</span><span class="logo-letter">L</span>
+                    </div>
+                    <span class="logo-subtext">COMPUTERS</span>
+                </a>
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-foreground">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="products.html" class="nav-link active">Products</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+                <div class="hidden md:flex items-center gap-2">
+                    <a href="tel:+923009287057" class="btn-glow rounded-full px-5 py-2 text-sm font-semibold">Get Free Call</a>
+                </div>
+                <button class="mobile-menu-btn md:hidden" aria-label="Menu" onclick="document.getElementById('mobileMenu').classList.toggle('active')" style="padding:8px;background:none;border:none;cursor:pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+                </button>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html" onclick="document.getElementById('mobileMenu').classList.remove('active')">Home</a>
+                <a href="products.html" onclick="document.getElementById('mobileMenu').classList.remove('active')">Products</a>
+                <a href="about.html" onclick="document.getElementById('mobileMenu').classList.remove('active')">About</a>
+                <a href="contact.html" onclick="document.getElementById('mobileMenu').classList.remove('active')">Contact</a>
+                <a href="tel:+923009287057" class="btn-glow rounded-full py-2 text-sm font-semibold text-center" style="margin-top:0.5rem;display:block;">Get Free Call</a>
             </div>
         </header>
 
@@ -67,16 +113,17 @@
 
                 <h2 class="text-2xl font-bold text-foreground mb-6">Product Categories</h2>
                 <div class="product-card-grid mb-10">
-                    <a href="products/laptops.html" class="p-card"><div class="p-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div><span class="p-name">Laptops & MacBooks</span><span class="p-brands">Apple • HP • Dell • Lenovo • Samsung • Acer</span></a>
-                    <a href="products/desktops.html" class="p-card"><div class="p-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div><span class="p-name">Desktops & Workstations</span><span class="p-brands">HP • Dell • Lenovo • Custom Built</span></a>
-                    <a href="products/lcds.html" class="p-card"><div class="p-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/></svg></div><span class="p-name">LCDs & Monitors</span><span class="p-brands">Samsung • HP • Dell • Acer • Lenovo</span></a>
-                    <a href="products/printers.html" class="p-card"><div class="p-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 12H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div><span class="p-name">Printers & Scanners</span><span class="p-brands">HP • Canon • Epson • Brother • Samsung</span></a>
-                    <a href="products/toners.html" class="p-card"><div class="p-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg></div><span class="p-name">Toners & Cartridges</span><span class="p-brands">HP • Canon • Samsung • Lexmark</span></a>
-                    <a href="products/ups.html" class="p-card"><div class="p-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><span class="p-name">UPS & Power Backup</span><span class="p-brands">APC • Homage • Inverex • FSP</span></a>
-                    <a href="products/switches.html" class="p-card"><div class="p-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 0 20"/><path d="M2 12h20"/></svg></div><span class="p-name">Switches & Routers</span><span class="p-brands">Cisco • TP-Link • D-Link • Netgear</span></a>
-                    <a href="products/accessories.html" class="p-card"><div class="p-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="10" x="3" y="7" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div><span class="p-name">Accessories & Parts</span><span class="p-brands">Mice • Keyboards • RAM • SSD • Dongles</span></a>
-                    <a href="products/setups.html" class="p-card"><div class="p-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div><span class="p-name">Complete Desk Setups</span><span class="p-brands">Gaming • Office • Programming • Study • Security</span></a>
-                    <a href="products/troubleshooting.html" class="p-card"><div class="p-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><span class="p-name">Troubleshooting & Software</span><span class="p-brands">Windows • Installation • Repairs • Recovery</span></a>
+                    <a href="products/laptops.html" class="p-card"><img src="https://images.unsplash.com/photo-1585316121394-d7a05f649fd7?q=80&w=970&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Laptop" class="p-img"><div class="p-content"><span class="p-name">Laptops & MacBooks</span><span class="p-brands">Apple • HP • Dell • Lenovo • Samsung • Acer</span></div></a>
+                    <a href="products/tablets.html" class="p-card"><img src="https://cdn.thewirecutter.com/wp-content/media/2025/04/BEST-TABLETS-2048px-3x2-1.jpg?auto=webp&quality=75&crop=4:3,smart&width=1024" alt="Tablets" class="p-img"><div class="p-content"><span class="p-name">Tablets & iPads</span><span class="p-brands">Apple • Samsung • Lenovo • Huawei • Xiaomi</span></div></a>
+                    <a href="products/desktops.html" class="p-card"><img src="https://img.magnific.com/premium-photo/super-computer-gaming-design-photo-wjth-neon-light-black-background_626849-1407.jpg" alt="Gaming PC" class="p-img"><div class="p-content"><span class="p-name">Desktops & Workstations</span><span class="p-brands">HP • Dell • Lenovo • Custom Built</span></div></a>
+                    <a href="products/lcds.html" class="p-card"><img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1400&q=80" alt="Monitor Display" class="p-img"><div class="p-content"><span class="p-name">LCDs & Monitors</span><span class="p-brands">Samsung • HP • Dell • Acer • Lenovo</span></div></a>
+                    <a href="products/printers.html" class="p-card"><img src="https://sm.pcmag.com/pcmag_me/guide/t/the-best-p/the-best-photo-printers-for-2024_78rs.jpg" alt="Printer" class="p-img"><div class="p-content"><span class="p-name">Printers & Scanners</span><span class="p-brands">HP • Canon • Epson • Brother • Samsung</span></div></a>
+                    <a href="products/toners.html" class="p-card"><img src="https://miro.medium.com/v2/resize:fit:1400/1*vIiE8MdZIXhiGbkaxrqYrg.jpeg" alt="Software Solutions" class="p-img"><div class="p-content"><span class="p-name">Toners & Cartridges</span><span class="p-brands">HP • Canon • Samsung • Lexmark</span></div></a>
+                    <a href="products/ups.html" class="p-card"><img src="https://sc04.alicdn.com/kf/H11faabfe3b864b5593d523e216f660e5G.jpg" alt="Network Switch" class="p-img"><div class="p-content"><span class="p-name">UPS & Power Backup</span><span class="p-brands">APC • Homage • Inverex • FSP</span></div></a>
+                    <a href="products/switches.html" class="p-card"><img src="https://techterms.com/img/xl/router_124.png" alt="Router" class="p-img"><div class="p-content"><span class="p-name">Switches & Routers</span><span class="p-brands">Cisco • TP-Link • D-Link • Netgear</span></div></a>
+                    <a href="products/accessories.html" class="p-card"><img src="https://img.magnific.com/premium-photo/gaming-headset-table-with-blurred-computer-screen-background-blue-purple-lighting-high-resolution-photography_1256366-1718.jpg" alt="Gaming Headset" class="p-img"><div class="p-content"><span class="p-name">Accessories & Parts</span><span class="p-brands">Mice • Keyboards • RAM • SSD • Dongles</span></div></a>
+                    <a href="products/setups.html" class="p-card"><img src="https://i.ytimg.com/vi/QxASHIa78Lg/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBgR_62Lvolc9NFM5T0Q1RaW2hNvQ" alt="Office Setup" class="p-img"><div class="p-content"><span class="p-name">Complete Desk Setups</span><span class="p-brands">Gaming • Office • Programming • Study</span></div></a>
+                    <a href="products/troubleshooting.html" class="p-card"><img src="https://bluetowertech.com/wp-content/uploads/2023/03/Services-Main-1-1024x414-1.png" alt="Troubleshooting" class="p-img"><div class="p-content"><span class="p-name">Troubleshooting & Software</span><span class="p-brands">Windows • Installation • Repairs • Recovery</span></div></a>
                 </div>
 
                 <section class="timer-section">
@@ -92,10 +139,29 @@
             </div>
         </main>
 
-        <footer class="bg-foreground text-background"><div class="mx-auto max-w-7xl px-4 md:px-6 py-12 grid gap-8 md:grid-cols-4"><div><div class="flex items-center gap-2 mb-3"><div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg></div><div class="font-bold text-lg">Digital Computers</div></div><p class="text-sm opacity-70">Your trusted partner for premium IT solutions.</p></div><div><h4 class="font-semibold mb-3 text-primary">Quick Links</h4><ul class="space-y-2 text-sm opacity-80"><li><a href="index.html" class="hover:text-primary">Home</a></li><li><a href="products.html" class="hover:text-primary">Products</a></li><li><a href="about.html" class="hover:text-primary">About Us</a></li><li><a href="contact.html" class="hover:text-primary">Contact</a></li></ul></div><div><h4 class="font-semibold mb-3 text-primary">Categories</h4><ul class="space-y-2 text-sm opacity-80"><li>Laptops & Desktops</li><li>LCD Monitors</li><li>Printers & Toners</li><li>UPS & Switches</li><li>Accessories & Parts</li></ul></div><div><h4 class="font-semibold mb-3 text-primary">Contact</h4><ul class="space-y-2 text-sm opacity-80"><li>+92 300 9287057</li><li>+92 315 2699989</li><li>digitalcomputers1998@gmail.com</li><li>Karachi, Pakistan</li></ul></div></div><div class="border-t border-white/10 py-4 text-center text-xs opacity-60">&copy; 2026 Digital Computers.</div></footer>
+        <!-- Footer -->
+        <footer class="bg-foreground text-background">
+            <div class="mx-auto max-w-7xl px-4 md:px-6 py-12 grid gap-8 md:grid-cols-4">
+                <div>
+                    <div class="footer-logo mb-3">
+                        <div class="logo-blocks">
+                            <span class="logo-letter">D</span><span class="logo-letter">I</span><span class="logo-letter">G</span><span class="logo-letter">I</span><span class="logo-letter">T</span><span class="logo-letter">A</span><span class="logo-letter">L</span>
+                        </div>
+                        <span class="logo-subtext" style="color:#fff">COMPUTERS</span>
+                    </div>
+                    <p class="text-sm opacity-70">Your trusted partner for premium IT solutions.</p>
+                </div>
+                <div><h4 class="font-semibold mb-3 text-primary">Quick Links</h4><ul class="space-y-2 text-sm opacity-80"><li><a href="index.html" class="hover:text-primary">Home</a></li><li><a href="products.html" class="hover:text-primary">Products</a></li><li><a href="about.html" class="hover:text-primary">About Us</a></li><li><a href="contact.html" class="hover:text-primary">Contact</a></li></ul></div>
+                <div><h4 class="font-semibold mb-3 text-primary">Categories</h4><ul class="space-y-2 text-sm opacity-80"><li>Laptops & Desktops</li><li>Tablets & iPads</li><li>LCD Monitors</li><li>Printers & Toners</li><li>UPS & Switches</li></ul></div>
+                <div><h4 class="font-semibold mb-3 text-primary">Contact</h4><ul class="space-y-2 text-sm opacity-80"><li>+92 300 9287057</li><li>+92 315 2699989</li><li>digitalcomputers1998@gmail.com</li><li>Karachi, Pakistan</li></ul></div>
+            </div>
+            <div class="border-t border-white/10 py-4 text-center text-xs opacity-60">&copy; 2026 Digital Computers.</div>
+        </footer>
+
+        <!-- WhatsApp -->
         <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end">
-            <a href="https://wa.me/923009287057?text=I%20want%20to%20join%20a%20digital%20computers%20and%20want%20a%20help%20of%20digital%20computers%20for%20choosing%20me%20a%20best%20solution%20of%20my%20problem%2C%20please%20help%20me!" target="_blank" class="whatsapp-btn"><span class="whatsapp-number">0300 9287057</span><span class="whatsapp-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></span></a>
-            <a href="https://wa.me/923152699989?text=I%20want%20to%20join%20a%20digital%20computers%20and%20want%20a%20help%20of%20digital%20computers%20for%20choosing%20me%20a%20best%20solution%20of%20my%20problem%2C%20please%20help%20me!" target="_blank" class="whatsapp-btn"><span class="whatsapp-number">0315 2699989</span><span class="whatsapp-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></span></a>
+            <a href="https://wa.me/923009287057?text=I%20want%20to%20join%20a%20digital%20computers%20and%20want%20a%20help%20of%20digital%20computers%20for%20choosing%20me%20a%20best%20solution%20of%20my%20problem%2C%20please%20help%20me!" target="_blank" class="whatsapp-btn"><span class="whatsapp-number">0300 9287057</span><span class="whatsapp-icon-wrap"><svg viewBox="0 0 32 32"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></span></a>
+            <a href="https://wa.me/923152699989?text=I%20want%20to%20join%20a%20digital%20computers%20and%20want%20a%20help%20of%20digital%20computers%20for%20choosing%20me%20a%20best%20solution%20of%20my%20problem%2C%20please%20help%20me!" target="_blank" class="whatsapp-btn"><span class="whatsapp-number">0315 2699989</span><span class="whatsapp-icon-wrap"><svg viewBox="0 0 32 32"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></span></a>
         </div>
     </div>
     <script>function startCountdown(){let t=7*3600+45*60;function e(){const h=Math.floor(t/3600),m=Math.floor((t%3600)/60),s=t%60;document.getElementById('hours').textContent=String(h).padStart(2,'0');document.getElementById('minutes').textContent=String(m).padStart(2,'0');document.getElementById('seconds').textContent=String(s).padStart(2,'0');if(t>0){t--}else{t=7*3600+45*60}}e();setInterval(e,1000)}startCountdown();</script>
