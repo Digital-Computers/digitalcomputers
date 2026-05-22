@@ -11,324 +11,52 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        .about-hero {
-            background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 5%, transparent), var(--background));
-        }
-        .value-card {
-            transition: var(--transition-smooth);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2rem;
-            text-align: center;
-        }
-        .value-card:hover {
-            border-color: var(--primary);
-            box-shadow: var(--shadow-card);
-            transform: translateY(-4px);
-        }
-        .value-icon {
-            display: flex;
-            height: 3.5rem;
-            width: 3.5rem;
-            align-items: center;
-            justify-content: center;
-            border-radius: 1rem;
-            background: color-mix(in oklab, var(--primary) 10%, transparent);
-            color: var(--primary);
-            margin: 0 auto 1rem;
-        }
-        .timeline-dot {
-            display: flex;
-            height: 3rem;
-            width: 3rem;
-            align-items: center;
-            justify-content: center;
-            border-radius: 9999px;
-            background: var(--primary);
-            color: var(--primary-foreground);
-            flex-shrink: 0;
-            font-weight: 700;
-        }
-        .timeline-line {
-            width: 2px;
-            background: color-mix(in oklab, var(--primary) 30%, transparent);
-            flex-grow: 1;
-            margin: 0 auto;
-        }
+        .logo-container{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;line-height:1;flex-shrink:0}
+        .logo-blocks{display:flex;gap:2px}
+        .logo-letter{width:28px;height:38px;background:#dc2626;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.2rem;border-radius:3px}
+        .logo-subtext{font-size:11px;font-weight:700;color:#1a1a1a;margin-top:2px;letter-spacing:1.5px}
+        @media(min-width:768px){.logo-letter{width:34px;height:46px;font-size:1.4rem}.logo-subtext{font-size:14px}}
+        .footer-logo-letter{width:22px;height:30px;background:#dc2626;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.95rem;border-radius:3px}
+        .footer-logo-subtext{font-size:11px;font-weight:700;color:#fff;margin-top:2px;letter-spacing:1.5px}
+        .mobile-menu{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:2px solid #dc2626;box-shadow:0 10px 30px rgba(0,0,0,0.1);flex-direction:column;padding:1rem;gap:0.5rem;z-index:50}
+        .mobile-menu.active{display:flex}
+        .mobile-menu a{padding:0.8rem 1rem;text-decoration:none;color:#1a1a1a;font-weight:600;font-size:1rem;border-radius:8px;transition:all 0.3s}
+        .mobile-menu a:hover{background:#fef2f2;color:#dc2626}
+        .about-hero{background:linear-gradient(135deg,color-mix(in oklab,var(--primary) 5%,transparent),var(--background))}
+        .value-card{transition:var(--transition-smooth);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;text-align:center}
+        .value-card:hover{border-color:var(--primary);box-shadow:var(--shadow-card);transform:translateY(-4px)}
+        .value-icon{display:flex;height:3.5rem;width:3.5rem;align-items:center;justify-content:center;border-radius:1rem;background:color-mix(in oklab,var(--primary) 10%,transparent);color:var(--primary);margin:0 auto 1rem}
+        .timeline-dot{display:flex;height:3rem;width:3rem;align-items:center;justify-content:center;border-radius:9999px;background:var(--primary);color:var(--primary-foreground);flex-shrink:0;font-weight:700}
+        .timeline-line{width:2px;background:color-mix(in oklab,var(--primary) 30%,transparent);flex-grow:1;margin:0 auto}
     </style>
 </head>
 <body>
     <div class="flex min-h-screen flex-col">
 
-        <!-- Header -->
         <header class="sticky top-0 z-40 w-full border-b border-border bg-background/90 backdrop-blur-md">
-            <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
-                <a href="index.html" class="flex items-center gap-2 group">
-                    <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-[var(--primary-glow)] text-primary-foreground shadow-[var(--shadow-glow)] transition-transform group-hover:scale-110">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
-                            <rect width="20" height="14" x="2" y="3" rx="2"></rect>
-                            <line x1="8" x2="16" y1="21" y2="21"></line>
-                            <line x1="12" x2="12" y1="17" y2="21"></line>
-                        </svg>
-                    </div>
-                    <div class="leading-tight">
-                        <div class="font-bold text-lg text-foreground">Digital <span class="text-gradient">Computers</span></div>
-                        <div class="text-[10px] uppercase tracking-widest text-muted-foreground">IT Solutions</div>
-                    </div>
-                </a>
-
-                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-foreground">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="products.html" class="nav-link">Products</a>
-                    <a href="about.html" class="nav-link active">About</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </nav>
-
-                <div class="hidden md:flex items-center gap-3">
-                    <a href="tel:+02136274141" class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                            <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
-                        </svg> +02 136 274 141</a>
-                    <a href="contact.html" class="btn-glow rounded-full px-5 py-2 text-sm font-semibold">Get Quote</a>
-                </div>
-
-                <button class="mobile-menu-btn md:hidden" aria-label="Menu">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path>
-                    </svg>
-                </button>
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-3 py-3 md:px-6 md:py-4">
+                <a href="index.html" class="logo-container"><div class="logo-blocks"><span class="logo-letter">D</span><span class="logo-letter">I</span><span class="logo-letter">G</span><span class="logo-letter">I</span><span class="logo-letter">T</span><span class="logo-letter">A</span><span class="logo-letter">L</span></div><span class="logo-subtext">COMPUTERS</span></a>
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-foreground"><a href="index.html" class="nav-link">Home</a><a href="products.html" class="nav-link">Products</a><a href="about.html" class="nav-link active">About</a><a href="contact.html" class="nav-link">Contact</a></nav>
+                <div class="hidden md:flex items-center gap-2"><a href="tel:+923009287057" class="btn-glow rounded-full px-5 py-2 text-sm font-semibold">Get Free Call</a></div>
+                <button class="mobile-menu-btn md:hidden" aria-label="Menu" onclick="document.getElementById('mobileMenu').classList.toggle('active')" style="padding:8px;background:none;border:none;cursor:pointer;"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button>
             </div>
+            <div class="mobile-menu" id="mobileMenu"><a href="index.html" onclick="document.getElementById('mobileMenu').classList.remove('active')">Home</a><a href="products.html" onclick="document.getElementById('mobileMenu').classList.remove('active')">Products</a><a href="about.html" onclick="document.getElementById('mobileMenu').classList.remove('active')">About</a><a href="contact.html" onclick="document.getElementById('mobileMenu').classList.remove('active')">Contact</a><a href="tel:+923009287057" class="btn-glow rounded-full py-2 text-sm font-semibold text-center" style="margin-top:0.5rem;display:block;">Get Free Call</a></div>
         </header>
 
-        <!-- Main Content -->
         <main class="flex-1">
-
-            <!-- Hero Section -->
-            <section class="about-hero py-20">
-                <div class="mx-auto max-w-7xl px-4 md:px-6 text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold text-foreground">About <span class="text-gradient">Digital Computers</span></h1>
-                    <p class="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg">Serving Pakistan's IT hardware needs since 1998 with integrity, quality, and unmatched customer service.</p>
-                </div>
-            </section>
-
-            <!-- Story Section -->
-            <section class="py-20">
-                <div class="mx-auto max-w-7xl px-4 md:px-6">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <h2 class="text-3xl font-bold text-foreground mb-6">Our <span class="text-gradient">Story</span></h2>
-                            <p class="text-muted-foreground leading-relaxed mb-4">
-                                Digital Computers was founded in 1998 with a simple mission: to provide businesses and individuals in Karachi with reliable, high-quality IT hardware at competitive prices.
-                            </p>
-                            <p class="text-muted-foreground leading-relaxed mb-4">
-                                What started as a small shop has grown into one of Karachi's most trusted names in IT hardware, serving over 1000+ clients across Pakistan with premium laptops, desktops, networking equipment, and office computing solutions.
-                            </p>
-                            <p class="text-muted-foreground leading-relaxed">
-                                Today, we partner with world-leading brands like HP, Dell, Lenovo, Apple, Cisco, and more to bring the best technology to your doorstep. Our commitment to authenticity, quality, and customer satisfaction remains unwavering.
-                            </p>
-                        </div>
-                        <div class="bg-muted rounded-2xl p-8 flex items-center justify-center aspect-video">
-                            <div class="text-center">
-                                <div class="text-7xl font-extrabold text-gradient mb-4">27+</div>
-                                <div class="text-lg text-muted-foreground">Years of Excellence</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Mission & Values -->
-            <section class="py-20 bg-muted/50">
-                <div class="mx-auto max-w-7xl px-4 md:px-6">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl md:text-4xl font-bold text-foreground">Our <span class="text-gradient">Values</span></h2>
-                        <p class="mt-3 text-muted-foreground">The principles that guide everything we do</p>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="value-card">
-                            <div class="value-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="font-semibold text-lg text-foreground mb-2">Authenticity</h3>
-                            <p class="text-sm text-muted-foreground">We only sell 100% genuine products from authorized distributors. No compromises.</p>
-                        </div>
-                        <div class="value-card">
-                            <div class="value-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                </svg>
-                            </div>
-                            <h3 class="font-semibold text-lg text-foreground mb-2">Quality Assurance</h3>
-                            <p class="text-sm text-muted-foreground">Every product is tested and verified before it reaches our customers.</p>
-                        </div>
-                        <div class="value-card">
-                            <div class="value-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>
-                            </div>
-                            <h3 class="font-semibold text-lg text-foreground mb-2">Customer First</h3>
-                            <p class="text-sm text-muted-foreground">Our clients are at the heart of everything we do. We strive to exceed expectations.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Timeline / Milestones -->
-            <section class="py-20">
-                <div class="mx-auto max-w-5xl px-4 md:px-6">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl md:text-4xl font-bold text-foreground">Our <span class="text-gradient">Journey</span></h2>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-6">
-                            <div class="flex flex-col items-center">
-                                <div class="timeline-dot text-sm">1998</div>
-                                <div class="timeline-line"></div>
-                            </div>
-                            <div class="pb-8">
-                                <h3 class="font-semibold text-foreground">Founded</h3>
-                                <p class="text-sm text-muted-foreground mt-1">Digital Computers opens its doors in Karachi, Pakistan as a small IT hardware retailer.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-6">
-                            <div class="flex flex-col items-center">
-                                <div class="timeline-dot text-sm">2005</div>
-                                <div class="timeline-line"></div>
-                            </div>
-                            <div class="pb-8">
-                                <h3 class="font-semibold text-foreground">Expansion</h3>
-                                <p class="text-sm text-muted-foreground mt-1">Expanded product lines to include networking equipment and enterprise solutions.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-6">
-                            <div class="flex flex-col items-center">
-                                <div class="timeline-dot text-sm">2012</div>
-                                <div class="timeline-line"></div>
-                            </div>
-                            <div class="pb-8">
-                                <h3 class="font-semibold text-foreground">Partnerships</h3>
-                                <p class="text-sm text-muted-foreground mt-1">Became authorized reseller for HP, Dell, Lenovo, and Cisco products.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-6">
-                            <div class="flex flex-col items-center">
-                                <div class="timeline-dot text-sm">2020</div>
-                                <div class="timeline-line"></div>
-                            </div>
-                            <div class="pb-8">
-                                <h3 class="font-semibold text-foreground">Digital Transformation</h3>
-                                <p class="text-sm text-muted-foreground mt-1">Launched online presence to serve customers across all of Pakistan.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-6">
-                            <div class="flex flex-col items-center">
-                                <div class="timeline-dot text-sm">2026</div>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-foreground">Today</h3>
-                                <p class="text-sm text-muted-foreground mt-1">Serving 1000+ clients with 500+ products from 10+ world-leading brands.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA -->
-            <section class="py-16 bg-foreground text-background text-center">
-                <div class="mx-auto max-w-3xl px-4">
-                    <h2 class="text-2xl md:text-3xl font-bold">Ready to Work With Us?</h2>
-                    <p class="mt-3 opacity-80">Get in touch today for the best IT hardware solutions in Karachi.</p>
-                    <a href="contact.html" class="btn-glow rounded-full px-8 py-3 text-base font-semibold inline-block mt-6">Contact Us</a>
-                </div>
-            </section>
-
+            <section class="about-hero py-20"><div class="mx-auto max-w-7xl px-4 md:px-6 text-center"><h1 class="text-4xl md:text-5xl font-bold text-foreground">About <span class="text-gradient">Digital Computers</span></h1><p class="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg">Serving Pakistan's IT hardware needs since 1998 with integrity, quality, and unmatched customer service.</p></div></section>
+            <section class="py-20"><div class="mx-auto max-w-7xl px-4 md:px-6"><div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"><div><h2 class="text-3xl font-bold text-foreground mb-6">Our <span class="text-gradient">Story</span></h2><p class="text-muted-foreground leading-relaxed mb-4">Digital Computers was founded in 1998 with a simple mission: to provide businesses and individuals in Karachi with reliable, high-quality IT hardware at competitive prices.</p><p class="text-muted-foreground leading-relaxed mb-4">What started as a small shop has grown into one of Karachi's most trusted names in IT hardware, serving over 1000+ clients across Pakistan with premium laptops, desktops, networking equipment, and office computing solutions.</p><p class="text-muted-foreground leading-relaxed">Today, we partner with world-leading brands like HP, Dell, Lenovo, Apple, Cisco, and more to bring the best technology to your doorstep. Our commitment to authenticity, quality, and customer satisfaction remains unwavering.</p></div><div class="bg-muted rounded-2xl p-8 flex items-center justify-center aspect-video"><div class="text-center"><div class="text-7xl font-extrabold text-gradient mb-4">27+</div><div class="text-lg text-muted-foreground">Years of Excellence</div></div></div></div></div></section>
+            <section class="py-20 bg-muted/50"><div class="mx-auto max-w-7xl px-4 md:px-6"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-foreground">Our <span class="text-gradient">Values</span></h2><p class="mt-3 text-muted-foreground">The principles that guide everything we do</p></div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"><div class="value-card"><div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><h3 class="font-semibold text-lg text-foreground mb-2">Authenticity</h3><p class="text-sm text-muted-foreground">We only sell 100% genuine products from authorized distributors. No compromises.</p></div><div class="value-card"><div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div><h3 class="font-semibold text-lg text-foreground mb-2">Quality Assurance</h3><p class="text-sm text-muted-foreground">Every product is tested and verified before it reaches our customers.</p></div><div class="value-card"><div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><h3 class="font-semibold text-lg text-foreground mb-2">Customer First</h3><p class="text-sm text-muted-foreground">Our clients are at the heart of everything we do. We strive to exceed expectations.</p></div></div></div></section>
+            <section class="py-20"><div class="mx-auto max-w-5xl px-4 md:px-6"><div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-foreground">Our <span class="text-gradient">Journey</span></h2></div><div class="space-y-4"><div class="flex items-start gap-6"><div class="flex flex-col items-center"><div class="timeline-dot text-sm">1998</div><div class="timeline-line"></div></div><div class="pb-8"><h3 class="font-semibold text-foreground">Founded</h3><p class="text-sm text-muted-foreground mt-1">Digital Computers opens its doors in Karachi, Pakistan as a small IT hardware retailer.</p></div></div><div class="flex items-start gap-6"><div class="flex flex-col items-center"><div class="timeline-dot text-sm">2005</div><div class="timeline-line"></div></div><div class="pb-8"><h3 class="font-semibold text-foreground">Expansion</h3><p class="text-sm text-muted-foreground mt-1">Expanded product lines to include networking equipment and enterprise solutions.</p></div></div><div class="flex items-start gap-6"><div class="flex flex-col items-center"><div class="timeline-dot text-sm">2012</div><div class="timeline-line"></div></div><div class="pb-8"><h3 class="font-semibold text-foreground">Partnerships</h3><p class="text-sm text-muted-foreground mt-1">Became authorized reseller for HP, Dell, Lenovo, and Cisco products.</p></div></div><div class="flex items-start gap-6"><div class="flex flex-col items-center"><div class="timeline-dot text-sm">2020</div><div class="timeline-line"></div></div><div class="pb-8"><h3 class="font-semibold text-foreground">Digital Transformation</h3><p class="text-sm text-muted-foreground mt-1">Launched online presence to serve customers across all of Pakistan.</p></div></div><div class="flex items-start gap-6"><div class="flex flex-col items-center"><div class="timeline-dot text-sm">2026</div></div><div><h3 class="font-semibold text-foreground">Today</h3><p class="text-sm text-muted-foreground mt-1">Serving 1000+ clients with 500+ products from 10+ world-leading brands.</p></div></div></div></div></section>
+            <section class="py-16 bg-foreground text-background text-center"><div class="mx-auto max-w-3xl px-4"><h2 class="text-2xl md:text-3xl font-bold">Ready to Work With Us?</h2><p class="mt-3 opacity-80">Get in touch today for the best IT hardware solutions in Karachi.</p><a href="contact.html" class="btn-glow rounded-full px-8 py-3 text-base font-semibold inline-block mt-6">Contact Us</a></div></section>
         </main>
 
-        <!-- Footer -->
-        <footer class="bg-foreground text-background">
-            <div class="mx-auto max-w-7xl px-4 md:px-6 py-12 grid gap-8 md:grid-cols-4">
-                <div>
-                    <div class="flex items-center gap-2 mb-3">
-                        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
-                                <rect width="20" height="14" x="2" y="3" rx="2"></rect>
-                                <line x1="8" x2="16" y1="21" y2="21"></line>
-                                <line x1="12" x2="12" y1="17" y2="21"></line>
-                            </svg>
-                        </div>
-                        <div class="font-bold text-lg">Digital Computers</div>
-                    </div>
-                    <p class="text-sm opacity-70">Your trusted partner for premium IT hardware, networking and office computing solutions.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-3 text-primary">Quick Links</h4>
-                    <ul class="space-y-2 text-sm opacity-80">
-                        <li><a href="index.html" class="hover:text-primary">Home</a></li>
-                        <li><a href="products.html" class="hover:text-primary">Products</a></li>
-                        <li><a href="about.html" class="hover:text-primary">About Us</a></li>
-                        <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-3 text-primary">Categories</h4>
-                    <ul class="space-y-2 text-sm opacity-80">
-                        <li>Laptops &amp; Desktops</li>
-                        <li>LCD Monitors</li>
-                        <li>Keyboards &amp; Mice</li>
-                        <li>UPS &amp; Switches</li>
-                        <li>Printers</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-3 text-primary">Contact</h4>
-                    <ul class="space-y-2 text-sm opacity-80">
-                        <li class="flex items-start gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mt-0.5 shrink-0">
-                                <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
-                            </svg> +02 136 274 141</li>
-                        <li class="flex items-start gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mt-0.5 shrink-0">
-                                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
-                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                            </svg> digitalcomputers1998@gmail.com</li>
-                        <li class="flex items-start gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mt-0.5 shrink-0">
-                                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg> Karachi, Pakistan</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-white/10 py-4 text-center text-xs opacity-60">&copy; 2026 Digital Computers. All rights reserved.</div>
-        </footer>
+        <footer class="bg-foreground text-background"><div class="mx-auto max-w-7xl px-4 md:px-6 py-12 grid gap-8 md:grid-cols-4"><div><div class="flex flex-col items-start mb-3"><div class="flex gap-1"><span class="footer-logo-letter">D</span><span class="footer-logo-letter">I</span><span class="footer-logo-letter">G</span><span class="footer-logo-letter">I</span><span class="footer-logo-letter">T</span><span class="footer-logo-letter">A</span><span class="footer-logo-letter">L</span></div><span class="footer-logo-subtext">COMPUTERS</span></div><p class="text-sm opacity-70">Your trusted partner for premium IT solutions.</p></div><div><h4 class="font-semibold mb-3 text-primary">Quick Links</h4><ul class="space-y-2 text-sm opacity-80"><li><a href="index.html" class="hover:text-primary">Home</a></li><li><a href="products.html" class="hover:text-primary">Products</a></li><li><a href="about.html" class="hover:text-primary">About Us</a></li><li><a href="contact.html" class="hover:text-primary">Contact</a></li></ul></div><div><h4 class="font-semibold mb-3 text-primary">Categories</h4><ul class="space-y-2 text-sm opacity-80"><li>Laptops & Desktops</li><li>LCD Monitors</li><li>Printers & Toners</li><li>UPS & Switches</li><li>Accessories</li></ul></div><div><h4 class="font-semibold mb-3 text-primary">Contact</h4><ul class="space-y-2 text-sm opacity-80"><li>+92 300 9287057</li><li>+92 315 2699989</li><li>digitalcomputers1998@gmail.com</li><li>Karachi, Pakistan</li></ul></div></div><div class="border-t border-white/10 py-4 text-center text-xs opacity-60">&copy; 2026 Digital Computers.</div></footer>
 
-        <!-- WhatsApp Buttons -->
         <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end">
-            <a href="https://wa.me/923009287057" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp 0300 9287057" class="whatsapp-btn">
-                <span class="whatsapp-number">0300 9287057</span>
-                <span class="whatsapp-icon-wrap">
-                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.888 2.722.888.345 0 2.15-.46 2.435-.96.13-.23.13-.43.13-.687 0-.314 0-.572-.144-.715-.273-.272-1.946-1.107-2.247-1.107zm.86-13.205c7.072 0 12.83 5.732 12.83 12.804a12.78 12.78 0 0 1-1.961 6.81L29.43 32l-5.49-1.435A12.804 12.804 0 0 1 7.122 9.78a12.812 12.812 0 0 1 12.85-5.78zm-.025 23.346c2.798 0 5.498-1.106 7.477-3.083l.495-.495 3.255.844-.872-3.17.473-.5a10.567 10.567 0 0 0 2.92-7.328c0-5.866-4.772-10.638-10.638-10.638-5.853 0-10.61 4.745-10.61 10.61a10.55 10.55 0 0 0 1.62 5.62l.25.4-1.06 3.86 3.964-1.04.385.215c1.59.945 3.41 1.46 5.296 1.46z"/>
-                    </svg>
-                </span>
-            </a>
-            <a href="https://wa.me/923152699989" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp 0315 2699989" class="whatsapp-btn">
-                <span class="whatsapp-number">0315 2699989</span>
-                <span class="whatsapp-icon-wrap">
-                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.888 2.722.888.345 0 2.15-.46 2.435-.96.13-.23.13-.43.13-.687 0-.314 0-.572-.144-.715-.273-.272-1.946-1.107-2.247-1.107zm.86-13.205c7.072 0 12.83 5.732 12.83 12.804a12.78 12.78 0 0 1-1.961 6.81L29.43 32l-5.49-1.435A12.804 12.804 0 0 1 7.122 9.78a12.812 12.812 0 0 1 12.85-5.78zm-.025 23.346c2.798 0 5.498-1.106 7.477-3.083l.495-.495 3.255.844-.872-3.17.473-.5a10.567 10.567 0 0 0 2.92-7.328c0-5.866-4.772-10.638-10.638-10.638-5.853 0-10.61 4.745-10.61 10.61a10.55 10.55 0 0 0 1.62 5.62l.25.4-1.06 3.86 3.964-1.04.385.215c1.59.945 3.41 1.46 5.296 1.46z"/>
-                    </svg>
-                </span>
-            </a>
+            <a href="https://wa.me/923009287057?text=I%20want%20to%20join%20a%20digital%20computers%20and%20want%20a%20help%20of%20digital%20computers%20for%20choosing%20me%20a%20best%20solution%20of%20my%20problem%2C%20please%20help%20me!" target="_blank" class="whatsapp-btn"><span class="whatsapp-number">0300 9287057</span><span class="whatsapp-icon-wrap"><svg viewBox="0 0 32 32"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></span></a>
+            <a href="https://wa.me/923152699989?text=I%20want%20to%20join%20a%20digital%20computers%20and%20want%20a%20help%20of%20digital%20computers%20for%20choosing%20me%20a%20best%20solution%20of%20my%20problem%2C%20please%20help%20me!" target="_blank" class="whatsapp-btn"><span class="whatsapp-number">0315 2699989</span><span class="whatsapp-icon-wrap"><svg viewBox="0 0 32 32"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></span></a>
         </div>
-
     </div>
 </body>
 </html>
