@@ -28,12 +28,17 @@
         .mobile-menu a{padding:0.8rem 1rem;text-decoration:none;color:#1a1a1a;font-weight:600;font-size:1rem;border-radius:8px;transition:all 0.3s}
         .mobile-menu a:hover{background:#fef2f2;color:#dc2626}
 
+        /* Hero Section */
+        .hero-gradient{position:relative;z-index:1}
+        .hero-gradient .max-w-7xl{position:relative;z-index:2}
+        .hero-gradient::before,.hero-gradient::after,.bg-primary\/10{pointer-events:none}
+
         /* Hero Button */
-        .hero-btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:1rem 2.8rem!important;border-radius:9999px!important;font-size:1.1rem!important;font-weight:700!important;text-decoration:none!important;cursor:pointer!important;pointer-events:auto!important;z-index:10!important;position:relative!important;transition:all 0.4s ease!important;border:2px solid #dc2626!important;background:#dc2626!important;color:#fff!important;overflow:hidden!important}
-        .hero-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:#fff;transition:left 0.5s ease;z-index:-1}
-        .hero-btn:hover::before{left:0}
-        .hero-btn:hover{color:#dc2626!important;border-color:#dc2626!important;z-index:1}
-        @media(max-width:640px){.hero-btn{width:auto!important;min-width:auto!important;padding:0.75rem 1.8rem!important;font-size:0.95rem!important}}
+        .hero-btn-main{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:1rem 2.8rem;border-radius:12px;font-size:1.1rem;font-weight:700;text-decoration:none;cursor:pointer;pointer-events:auto;z-index:100!important;position:relative!important;background:#dc2626;color:#fff;border:none;outline:none;box-shadow:0 4px 20px rgba(220,38,38,0.4);transition:all 0.3s ease;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+        .hero-btn-main:hover{background:#fff;color:#dc2626;box-shadow:0 8px 30px rgba(220,38,38,0.6);transform:translateY(-2px)}
+        .hero-btn-main:active{transform:scale(0.96);box-shadow:0 2px 10px rgba(220,38,38,0.3)}
+        .hero-btn-main svg{width:20px;height:20px;flex-shrink:0}
+        @media(max-width:640px){.hero-btn-main{width:auto;min-width:auto;padding:0.85rem 2rem;font-size:1rem;border-radius:10px}}
 
         .category-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
         @media(min-width:640px){.category-grid{grid-template-columns:repeat(3,1fr);gap:1.25rem}}
@@ -52,6 +57,8 @@
         @media(min-width:768px){.partner-heading{font-size:2.5rem}}
         .partner-subheading{text-align:center;font-size:1rem;color:#737373;margin-bottom:2.5rem}
         .partner-marquee{overflow:hidden;position:relative;padding:1.5rem 0}
+        .partner-marquee,.partner-marquee::before,.partner-marquee::after{pointer-events:none}
+        .partner-marquee a{pointer-events:auto}
         .partner-marquee::before,.partner-marquee::after{content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
         .partner-marquee::before{left:0;background:linear-gradient(to right,#fff 0%,transparent 100%)}
         .partner-marquee::after{right:0;background:linear-gradient(to left,#fff 0%,transparent 100%)}
@@ -66,6 +73,7 @@
         @media(min-width:768px){.brands-heading{font-size:2.5rem}}
         .brands-subheading{text-align:center;font-size:1rem;color:#737373;margin-bottom:2.5rem}
         .brand-marquee{overflow:hidden;position:relative;padding:1rem 0}
+        .brand-marquee,.brand-marquee::before,.brand-marquee::after{pointer-events:none}
         .brand-marquee::before,.brand-marquee::after{content:"";position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
         .brand-marquee::before{left:0;background:linear-gradient(to right,#fff 0%,transparent 100%)}
         .brand-marquee::after{right:0;background:linear-gradient(to left,#fff 0%,transparent 100%)}
@@ -95,13 +103,16 @@
                         <div class="hero-badge animate-fade-in-up mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><strong>Trusted Since 1998</strong></div>
                         <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground animate-fade-in-up">Premium <span class="text-gradient">IT Solutions</span> <br>For Your Business</h1>
                         <p class="mt-6 text-lg text-muted-foreground max-w-xl animate-fade-in-up">Your trusted partner for laptops, desktops, networking equipment, software and complete office IT solutions in Karachi, Pakistan.</p>
-                        <div class="mt-8 flex animate-fade-in-up" style="padding-left:15%">
-                            <a href="products.html" class="hero-btn">Explore Products</a>
+                        <div class="mt-8 flex animate-fade-in-up" style="position:relative;z-index:100;">
+                            <a href="products.html" class="hero-btn-main" style="margin-left:10%;">
+                                Explore Products
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
-                <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+                <div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/10 rounded-full blur-3xl" style="pointer-events:none"></div>
+                <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-primary/10 rounded-full blur-3xl" style="pointer-events:none"></div>
             </section>
 
             <!-- Shop by Category -->
@@ -123,20 +134,20 @@
                         <a href="https://shield.com.pk" target="_blank" rel="noopener"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI_j0ZqWYpETGN757z_uC8eXS7eK5OL_cW0A&s" alt="Shield"></a>
                         <a href="https://nagariatextiles.com/" target="_blank" rel="noopener"><img src="https://nagariatextiles.com/images/nagaria_textile.png" alt="Nagaria Textiles"></a>
                         <a href="https://pharmevo.biz/" target="_blank" rel="noopener"><img src="https://pharmevo.biz/wp-content/uploads/2024/07/Pharmevo-logo-for-web.png" alt="Pharmevo"></a>
-                        <a href="https://tabrospharma.com/" target="_blank" rel="noopener"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsADO_dspKUlM6uj1xNp76m1KXZuS3_LdS7A&s" alt="tabros"></a>
+                        <a href="https://tabrospharma.com/" target="_blank" rel="noopener"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsADO_dspKUlM6uj1xNp76m1KXZuS3_LdS7A&s" alt="Tabros"></a>
                         <a href="https://getzpharma.com/" target="_blank" rel="noopener"><img src="https://getzpharma.com/wp-content/themes/gp-child/media/images/web/Getz-Logo.svg" alt="Getz Pharma"></a>
                         <a href="https://hexalyze.com/" target="_blank" rel="noopener"><img src="https://admin.hexalyze.com/images/BuZc5KOD31KxMLA81VfH5A.png" alt="Hexalyze"></a>
-                        <a href="https://mehrangroup.com/" target="_blank" rel="noopener"><img src="https://mehrangroup.com/assets/images/logo.webp" alt="mehran foods"></a>
+                        <a href="https://mehrangroup.com/" target="_blank" rel="noopener"><img src="https://mehrangroup.com/assets/images/logo.webp" alt="Mehran Foods"></a>
                         <!-- Duplicate for seamless loop -->
                         <a href="https://premiergroup.com.pk" target="_blank" rel="noopener"><img src="https://premiergroup.com.pk/img/logomain2.png" alt="Premier Group"></a>
                         <a href="https://www.zamantextile.com/" target="_blank" rel="noopener"><img src="https://www.zamantextile.com/wp-content/uploads/2022/11/logo-2.png" alt="Zaman Textile"></a>
                         <a href="https://shield.com.pk" target="_blank" rel="noopener"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI_j0ZqWYpETGN757z_uC8eXS7eK5OL_cW0A&s" alt="Shield"></a>
                         <a href="https://nagariatextiles.com/" target="_blank" rel="noopener"><img src="https://nagariatextiles.com/images/nagaria_textile.png" alt="Nagaria Textiles"></a>
                         <a href="https://pharmevo.biz/" target="_blank" rel="noopener"><img src="https://pharmevo.biz/wp-content/uploads/2024/07/Pharmevo-logo-for-web.png" alt="Pharmevo"></a>
-                        <a href="https://tabrospharma.com/" target="_blank" rel="noopener"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsADO_dspKUlM6uj1xNp76m1KXZuS3_LdS7A&s" alt="tabros"></a>
+                        <a href="https://tabrospharma.com/" target="_blank" rel="noopener"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsADO_dspKUlM6uj1xNp76m1KXZuS3_LdS7A&s" alt="Tabros"></a>
                         <a href="https://getzpharma.com/" target="_blank" rel="noopener"><img src="https://getzpharma.com/wp-content/themes/gp-child/media/images/web/Getz-Logo.svg" alt="Getz Pharma"></a>
                         <a href="https://hexalyze.com/" target="_blank" rel="noopener"><img src="https://admin.hexalyze.com/images/BuZc5KOD31KxMLA81VfH5A.png" alt="Hexalyze"></a>
-                        <a href="https://mehrangroup.com/" target="_blank" rel="noopener"><img src="https://mehrangroup.com/assets/images/logo.webp" alt="mehran foods"></a>
+                        <a href="https://mehrangroup.com/" target="_blank" rel="noopener"><img src="https://mehrangroup.com/assets/images/logo.webp" alt="Mehran Foods"></a>
                     </div>
                 </div>
             </section>
